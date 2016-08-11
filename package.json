@@ -1,0 +1,33 @@
+{
+  "name": "rollup-plugin-async",
+  "version": "1.0.1",
+  "description": "Transforms Async functions to generator functions before bundling.",
+  "author": "Lee Byron <lee@leebyron.com> (http://leebyron.com/)",
+  "license": "BSD-3-Clause",
+  "main": "index.js",
+  "homepage": "https://github.com/leebyron/rollup-plugin-async",
+  "bugs": {
+    "url": "https://github.com/leebyron/rollup-plugin-async/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/leebyron/rollup-plugin-async.git"
+  },
+  "scripts": {
+    "test": "DIFF=$(rollup -c test/rollup.config.js test/source.js | diff test/expected.js -); if [ -n \"$DIFF\" ]; then echo \"$DIFF\"; exit 1; fi;",
+    "test-update": "rollup -c test/rollup.config.js test/source.js > test/expected.js"
+  },
+  "keywords": [
+    "rollup-plugin",
+    "async",
+    "await",
+    "async-to-gen"
+  ],
+  "dependencies": {
+    "async-to-gen": "^1.0.1",
+    "rollup-pluginutils": "^1.5.1"
+  },
+  "devDependencies": {
+    "rollup": "^0.34.1"
+  }
+}
