@@ -18,7 +18,7 @@ module.exports = function(options) {
           includeHelper: false
         });
         if (result.isEdited) {
-          result.prepend('import { __async } from "' + getAsyncHelperFile() + '"\n');
+          result.prepend('import { __async, __asyncGen } from "' + getAsyncHelperFile() + '"\n');
         }
         return {
           code: result.toString(),
@@ -34,7 +34,11 @@ var _asyncHelperFile;
 function getAsyncHelperFile() {
   if (!_asyncHelperFile) {
     _asyncHelperFile = path.join(os.tmpdir(), 'asyncHelper.' + Date.now() + '.js');
-    fs.writeFileSync(_asyncHelperFile, 'export ' + asyncToGen.asyncHelper);
+    fs.writeFileSync(
+      _asyncHelperFile,
+      'export ' + asyncToGen.asyncHelper + '\n' +
+      'export ' + asyncToGen.asyncGenHelper
+    );
     process.on('exit', function () {
       fs.unlinkSync(_asyncHelperFile)
     })

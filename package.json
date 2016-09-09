@@ -24,7 +24,7 @@
     "async-to-gen"
   ],
   "dependencies": {
-    "async-to-gen": "^1.0.3",
+    "async-to-gen": "^1.1.0",
     "rollup-pluginutils": "^1.5.1"
   },
   "devDependencies": {
