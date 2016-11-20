@@ -7,7 +7,7 @@ var createFilter = require('rollup-pluginutils').createFilter;
 module.exports = function(options) {
   options = options || {};
   var filter = createFilter(options.include, options.exclude);
-  const sourceMap = options.sourceMap !== false;
+  var sourceMap = options.sourceMap !== false;
 
   return {
     name: 'async-to-gen',
@@ -44,5 +44,9 @@ function getAsyncHelperFile() {
       fs.unlinkSync(_asyncHelperFile)
     })
   }
-  return _asyncHelperFile;
+  
+  // Note that while win32 uses \ as path separator, Node require() may rely on /.
+  return os.platform() === 'win32' ?
+    _asyncHelperFile.replace(/\\/g, '/') :
+    _asyncHelperFile;
 }
