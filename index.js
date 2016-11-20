@@ -18,7 +18,7 @@ module.exports = function(options) {
           includeHelper: false
         });
         if (result.isEdited) {
-          result.prepend('import { __async, __asyncGen } from "' + getAsyncHelperFile() + '"\n');
+          result.prepend('import { __async, __asyncGen, __asyncIterator } from "' + getAsyncHelperFile() + '"\n');
         }
         return {
           code: result.toString(),
@@ -37,7 +37,8 @@ function getAsyncHelperFile() {
     fs.writeFileSync(
       _asyncHelperFile,
       'export ' + asyncToGen.asyncHelper + '\n' +
-      'export ' + asyncToGen.asyncGenHelper
+      'export ' + asyncToGen.asyncGenHelper + '\n' +
+      'export ' + asyncToGen.asyncIteratorHelper
     );
     process.on('exit', function () {
       fs.unlinkSync(_asyncHelperFile)
